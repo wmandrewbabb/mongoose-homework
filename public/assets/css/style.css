@@ -1,0 +1,118 @@
+/*font-family: 'Roboto', sans-serif;
+font-family: 'Dekko', cursive;
+font-family: 'Walter Turncoat', cursive;*/
+
+html, body {
+    min-height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background: #000;
+    background: url("../images/ben-neale-297658-unsplash.png") no-repeat center center fixed; 
+    background-size: cover;
+    height: 100vh;
+}
+
+.jumbotron {
+    min-height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background: #000;
+    box-shadow: inset 0 0 0 2000px rgba(255, 255, 255, 0.888);
+    background: url("../images/lena-rose-491551-unsplash.png") no-repeat center center fixed; 
+    background-size: cover;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: goldenrod;
+    text-decoration: none;
+}
+
+a:active {
+    color: goldenrod;
+    text-decoration: none;
+}
+
+body {
+    padding: 70px;
+}
+
+h2, h3, h4, h5{
+    font-family: 'Dekko', cursive;
+}
+
+h1 {
+    font-family: 'Walter Turncoat', cursive;
+}
+
+.bg-lightfix {
+    color: white;
+    /* background: rgba(255, 255, 255, 0.50); */
+    background: rgba(0, 0, 0, 0.85);
+}
+
+
+#textBoxNotes {
+    display: flex;
+    width: 100%;
+}
+
+.modalColumn {
+    width: 100%;
+    margin-right: 30px;
+    display: flex;
+}
+
+.modalInput {
+    width:100%;
+    display: flex;
+}
+
+#firstButton {
+    border-radius: .25rem;
+    margin-right: 4px;
+    margin-left: auto;
+    height: 2.4rem;
+}
+
+.btn-group {
+    display: inline-flex;
+}
+#thumbnail {
+    /* max-height: 100px; */
+    width: auto;
+    max-width: 100%;
+    border: .5px white solid;
+}
+
+#deleteButton {
+    -webkit-text-stroke: 2px white;
+    height: 2.8rem;
+    width: 2.6rem;
+    padding-bottom: 1rem;
+    border: 4px solid white;
+}
+
+@media only screen and (max-width: 600px) {
+
+    body {
+        padding: 0px;
+    }
+
+    #thumbnail {
+        width: 100%;
+        max-height: auto;
+        margin-bottom: 4px;
+    }
+
+    .jumbotron {
+        margin-top: 15vh;
+    }
+} 
+

@@ -1,0 +1,59 @@
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Mongoose Article Scraper</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/saved">Saved</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/api">API</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-primary navbar-btn" id="scrapeBtn" href="/api/articles/scrape">Scrape Comicbook.com</a>
+        </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>ArticleScraper</h1>
+            <h3>A Mongoose/MongoDB webscraper</h3>
+            <h5>Currently pointed at Comicbook.com</h5>
+        </div>
+    </div>
+</div>
+
+<div id="articles">
+    {{#each articles}}
+        <div class="card card-body bg-lightfix">
+            <div class="row">
+                <div class="col-sm-2 image-cropper">
+                        <img src="{{this.img}}" id="thumbnail">
+                </div>
+                <div class="col-sm-6 d-flex justify-content-start">
+                    <h4><a href="{{this.link}}">{{this.title}}</a></h4>
+                </div>
+                    <div class="col-sm-4 d-flex justify-content-end">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <form class="form-inline" action="/api/articles/save/{{this.id}}" method="POST">
+                            <button type="submit" class="btn btn-success" id="firstButton">Save</button>
+                        </form>                        
+                        <form class="form-inline" action="/api/articles/dismiss/{{this.id}}?_method=DELETE" method="POST">
+                            <button type="submit" class="btn btn-warning">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>

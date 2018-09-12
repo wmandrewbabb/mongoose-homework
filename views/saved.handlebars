@@ -1,0 +1,99 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Mongoose Article Scraper</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/saved">Saved</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/api">API</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-primary navbar-btn" id="scrapeBtn" href="/api/articles/scrape">Scrape Comicbook.com</a>
+        </li>
+    </ul>
+  </div>
+</nav>
+
+<div id="articles">
+    {{#if articles}}
+        {{#each articles}}
+            <div class="card card-body bg-lightfix">
+                <div class="row">
+                    <div class="col-sm-2 image-cropper">
+                        <img src="{{this.img}}" id="thumbnail">
+                    </div>
+                    <div class="col-sm-6 d-flex justify-content-start">
+                        <h4><a href="{{this.link}}">{{this.title}}</a></h4>
+                    </div>
+                    <div class="col-sm-4 d-flex justify-content-end">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a class="btn btn-success" id="firstButton" href="#" data-toggle="modal" data-target="#{{this.id}}">Notes</a>
+                            <form class="form" action="/api/articles/{{this.id}}?_method=DELETE" method="POST">
+                                <button type="submit" class="btn btn-danger">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" id="{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="notesModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Notes for {{this.title}}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ml-auto" aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    {{#if this.notes}}
+                        {{#each this.notes}}
+                            <div class="well">
+                                <div class="row">
+                                    <div class="col col-md-10">
+                                        <p>{{this.text}}</p>
+                                    </div>
+                                    <div class="col col-md-2">
+                                    <form class="form-inline" action="/api/notes/{{this.id}}?_method=DELETE" method="POST">
+                                        <button type="submit" class="btn btn-danger" id="deleteButton">&times;</button>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    {{else}}
+                        <div class="well">
+                            <p>No one has written notes for this story yet.</p>
+                        </div>
+                    {{/if}}
+                </div>
+                <div class="modal-footer">
+                    <div class="row w-100">
+                        <div class="modalColumn">
+                            <div class="input-group mb-3">
+                                <form class="modalInput" action="/api/notes/{{this.id}}" method="POST">
+                                    <input type="text" class="form-control" id="textBoxNotes" name="text" placeholder="Add a new note...">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary" type="submit">Add Note</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>  
+        {{/each}}
+    {{else}}
+        <div class="card card-body bg-lightfix">
+            <h4>You haven't saved any articles yet.</h4>
+        </div>
+    {{/if}}
+</div>
